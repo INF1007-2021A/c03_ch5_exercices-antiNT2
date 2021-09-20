@@ -6,29 +6,82 @@ from typing import List
 
 
 def convert_to_absolute(number: float) -> float:
-    return 0
+    return number if number > 0 else -number
 
 
 def use_prefixes() -> List[str]:
     prefixes, suffixe = 'JKLMNOPQ', 'ack'
-
-    return [""]
+    output = []
+    for letter in prefixes:
+        output.append(letter + suffixe)
+    return output
 
 
 def prime_integer_summation() -> int:
-    return 0
+    output = 0
+    evaluatedNumber = 2
+    counter = 0
+    while counter < 100:
+        if(is_prime_number(evaluatedNumber)):
+            output += evaluatedNumber
+            counter += 1
+        evaluatedNumber +=1
 
+    return output
+
+def is_prime_number(number: int):
+    if number > 1:
+        for i in range(2, number):
+            if (number % i) == 0:
+                return False
+
+    return True            
 
 def factorial(number: int) -> int:
-    return 0
+    output = 1
+    for i in range(1,number):
+        output *= i
+    return output
 
 
 def use_continue() -> None:
-    pass
+    for i in range(1,11):
+        if(i != 5):
+            print(str(i))
+        else:
+            continue
 
 
 def verify_ages(groups: List[List[int]]) -> List[bool]:
-    return []
+    output = []
+    for group in groups:
+        if(is_group_acceptable(group)):
+            output.append(True)
+        else:
+            output.append(False)
+
+    return output
+
+def is_group_acceptable(group: List[int]) -> bool:
+    someone_older_than_seventy = False
+    someone_is_fifty = False
+        
+    for member_age in group:
+        if(member_age == 25):
+            return True
+        elif (member_age < 18):
+            return False
+        elif(member_age == 50):
+            someone_is_fifty = True
+        elif(member_age > 70):
+            someone_older_than_seventy = True
+    
+    if(someone_older_than_seventy and someone_is_fifty):
+        return False
+    if(len(group) > 10 or len(group) <=3):
+        return False
+    
+    return True
 
 
 def main() -> None:
